@@ -11,9 +11,9 @@
 
 using namespace vex;
 int inTakeSpeed = 50;
-int rampMovementTime = 1;
-int topSpeed = 100;
-int liftIntakesSpeed = 100;
+int rampMovementTime = 0.7;
+int topSpeed = 50;
+int liftIntakesSpeed = 20;
 // A global instance of vex::brain used for printing to the V5 brain screen
 
 // define your global instances of motors and other devices here
@@ -50,15 +50,33 @@ void stopIntakes()
 
 void moveIntakesUp()
 {
-    liftArm.rotateFor(liftIntakesSpeed, timeUnits::sec, topSpeed, velocityUnits::pct);
-    task::sleep(20);
+    bool going = true;
+    if (going)
+    {
+        liftArm.rotateFor(liftIntakesSpeed, timeUnits::sec, topSpeed, velocityUnits::pct);
+        task::sleep(20);
+    }
+    else
+    {
+        liftArm.stop();
+    }
+    going = !going;
     return;
 }
 
 void moveIntakesDown()
 {
-    liftArm.rotateFor(liftIntakesSpeed, timeUnits::sec, -topSpeed, velocityUnits::pct);
-    task::sleep(20);
+    bool going = true;
+    if (going)
+    {
+      liftArm.rotateFor(liftIntakesSpeed, timeUnits::sec, -topSpeed, velocityUnits::pct);
+      task::sleep(20);
+    }
+    else
+    {
+        liftArm.stop();
+    }
+    going = !going;
     return;
 }
 
