@@ -34,31 +34,33 @@ using namespace vex;
 int inTakeSpeed = 50;
 double rampMovementTime = 0.7;
 int topSpeed = 50;
-int liftIntakesSpeed = 20;
+int liftIntakesSpeed = 10;
 // A global instance of vex::brain used for printing to the V5 brain screen
 
 // define your global instances of motors and other devices here
 
-vex::controller Controller1 = vex::controller();
 
-void moveRampUp()
+void moveRamp()
 {
-    Ramp.rotateFor(rampMovementTime,timeUnits::sec,topSpeed,velocityUnits::pct);
-    task::sleep(20);
-    return;
-}
+    if (Controller1.ButtonL1.pressing())
+    {
+      Ramp.spin(forward);
+    } 
+    else if (Controller1.ButtonL2.pressing())
+    {
+      Ramp.spin(reverse);
+    }
+    else
+    {
+      Ramp.stop();
+    }
 
-void moveRampDown()
-{
-    Ramp.rotateFor(rampMovementTime,timeUnits::sec,-topSpeed,velocityUnits::pct);
-    task::sleep(20);
-    return;
 }
 
 void spinIntakes()
 {
-    RightIntake.spin(directionType::fwd, inTakeSpeed,velocityUnits::pct);
-    LeftIntake.spin(directionType::fwd, -inTakeSpeed,velocityUnits::pct);
+    RightIntake.spin(directionType::fwd, -inTakeSpeed,velocityUnits::pct);
+    LeftIntake.spin(directionType::fwd, inTakeSpeed,velocityUnits::pct);
     task::sleep(20);
     return;
 }
@@ -71,41 +73,34 @@ void stopIntakes()
     return;
 }
 
-void moveIntakesUp()
-{
-    if (Controller1.ButtonUp.pressing())
-    {
-        LiftArm.rotateFor(liftIntakesSpeed, timeUnits::sec, topSpeed, velocityUnits::pct);
-        task::sleep(20);
-    }
-    return;
-}
-
-void moveIntakesDown()
-{
-
-    if (Controller1.ButtonDown.pressing())
-    {
-      LiftArm.rotateFor(liftIntakesSpeed, timeUnits::sec, -topSpeed, velocityUnits::pct);
-      task::sleep(20);
-    }
-    return;
-}
-
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   
-  Controller1.ButtonL1.pressed(moveRampUp);
-  Controller1.ButtonL2.pressed(moveRampDown);
-  Controller1.ButtonUp.pressed(moveIntakesUp);
-  Controller1.ButtonDown.pressed(moveIntakesDown);
-  Controller1.ButtonR1.pressed(spinIntakes);
-  Controller1.ButtonR2.pressed(stopIntakes);
-
-  
   while(true)
   {
+
+    if (Controller1.ButtonUp.pressing())
+    {
+      LiftArm.spin(forward);
+    } 
+    else if (Controller1.ButtonB.pressing())
+    {
+      LiftArm.spin(reverse);
+    }
+    else
+    {
+      LiftArm.stop();
+    }
+
+    
+    Controller1.ButtonL1.pressed(moveRampUp);
+    Controller1.ButtonL2.pressed(moveRampDown);
+  
+    Controller1.ButtonR1.pressed(spinIntakes);
+    Controller1.ButtonR2.pressed(stopIntakes);
+
+
     LeftBack.spin(directionType::fwd, -(Controller1.Axis3.value()),velocityUnits::pct);
     LeftMiddle.spin(directionType::fwd, -(Controller1.Axis3.value()),velocityUnits::pct);
 
