@@ -1,3 +1,84 @@
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// RightBack            motor         3               
+// RightMiddle          motor         4               
+// RightIntake          motor         5               
+// LeftIntake           motor         6               
+// LiftArm              motor         7               
+// Ramp                 motor         8               
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// RightBack            motor         3               
+// RightMiddle          motor         4               
+// RightIntake          motor         5               
+// LeftIntake           motor         6               
+// LiftArm              motor         7               
+// Ramp                 motor         8               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// RightBack            motor         3               
+// RightMiddle          motor         4               
+// RightIntake          motor         5               
+// LeftIntake           motor         6               
+// LiftArm              motor         7               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// RightBack            motor         3               
+// RightMiddle          motor         4               
+// RightIntake          motor         5               
+// LeftIntake           motor         6               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// RightBack            motor         3               
+// RightMiddle          motor         4               
+// RightIntake          motor         5               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// RightBack            motor         3               
+// RightMiddle          motor         4               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// RightBack            motor         3               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// LeftMiddle           motor         2               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftBack             motor         1               
+// ---- END VEXCODE CONFIGURED DEVICES ----
 // To complete the VEXcode V5 Text project upgrade process, please follow the
 // steps below.
 // 
@@ -35,16 +116,12 @@ int inTakeSpeed = 50;
 double rampMovementTime = 0.7;
 int topSpeed = 50;
 int liftIntakesSpeed = 10;
-<<<<<<< HEAD
 bool slowMode = false;
-=======
->>>>>>> bb3741206eaf82487c8b3e954692e3af6b09713f
 // A global instance of vex::brain used for printing to the V5 brain screen
 
 // define your global instances of motors and other devices here
 
 
-<<<<<<< HEAD
 void moveRampUp()
 {
   Ramp.spinFor(2, timeUnits::sec, topSpeed,velocityUnits::pct);
@@ -56,7 +133,6 @@ void moveRampDown()
   Ramp.spinFor(4, timeUnits::sec, -topSpeed,velocityUnits::pct);
   return;
 }
-=======
 void moveRamp()
 {
     if (Controller1.ButtonL1.pressing())
@@ -74,7 +150,6 @@ void moveRamp()
 
 }
 
->>>>>>> bb3741206eaf82487c8b3e954692e3af6b09713f
 void spinIntakes()
 {
     RightIntake.spin(directionType::fwd, -inTakeSpeed,velocityUnits::pct);
@@ -85,17 +160,13 @@ void spinIntakes()
 
 void stopIntakes()
 {
-<<<<<<< HEAD
     slowMode = false;
-=======
->>>>>>> bb3741206eaf82487c8b3e954692e3af6b09713f
     RightIntake.spin(directionType::fwd, 0,velocityUnits::pct);
     LeftIntake.spin(directionType::fwd, 0,velocityUnits::pct);
     task::sleep(20);
     return;
 }
 
-<<<<<<< HEAD
 void reverseIntakes()
 {
     slowMode = true;
@@ -125,8 +196,6 @@ void reverseIntakes()
 //   return;
 // }
 
-=======
->>>>>>> bb3741206eaf82487c8b3e954692e3af6b09713f
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
@@ -138,11 +207,7 @@ int main() {
     {
       LiftArm.spin(forward);
     } 
-<<<<<<< HEAD
     else if (Controller1.ButtonDown.pressing())
-=======
-    else if (Controller1.ButtonB.pressing())
->>>>>>> bb3741206eaf82487c8b3e954692e3af6b09713f
     {
       LiftArm.spin(reverse);
     }
@@ -151,7 +216,6 @@ int main() {
       LiftArm.stop();
     }
 
-<<<<<<< HEAD
     Controller1.ButtonL1.pressed(moveRampUp);
     Controller1.ButtonL2.pressed(moveRampDown);
 
@@ -161,37 +225,21 @@ int main() {
 
     if(!slowMode)
     {
-      LeftBack.spin(directionType::fwd, -(Controller1.Axis3.value()),velocityUnits::pct);
-      LeftMiddle.spin(directionType::fwd, -(Controller1.Axis3.value()),velocityUnits::pct);
+      LeftBack.spin(directionType::fwd, (Controller1.Axis3.value()),velocityUnits::pct);
+      LeftMiddle.spin(directionType::fwd, (Controller1.Axis3.value()),velocityUnits::pct);
 
-      RightBack.spin(directionType::fwd, (Controller1.Axis2.value()),velocityUnits::pct);
-      RightMiddle.spin(directionType::fwd, (Controller1.Axis2.value()),velocityUnits::pct);
+      RightBack.spin(directionType::fwd, -(Controller1.Axis2.value()),velocityUnits::pct);
+      RightMiddle.spin(directionType::fwd, -(Controller1.Axis2.value()),velocityUnits::pct);
       task::sleep(20);
     }
     else
     {
-      LeftBack.spin(directionType::fwd, -(Controller1.Axis3.value()/5),velocityUnits::pct);
-      LeftMiddle.spin(directionType::fwd, -(Controller1.Axis3.value()/5),velocityUnits::pct);
+      LeftBack.spin(directionType::fwd, (Controller1.Axis3.value()/5),velocityUnits::pct);
+      LeftMiddle.spin(directionType::fwd, (Controller1.Axis3.value()/5),velocityUnits::pct);
 
-      RightBack.spin(directionType::fwd, (Controller1.Axis2.value()/5),velocityUnits::pct);
-      RightMiddle.spin(directionType::fwd, (Controller1.Axis2.value()/5),velocityUnits::pct);
+      RightBack.spin(directionType::fwd, -(Controller1.Axis2.value()/5),velocityUnits::pct);
+      RightMiddle.spin(directionType::fwd, -(Controller1.Axis2.value()/5),velocityUnits::pct);
       task::sleep(20);
     }
-=======
-    
-    Controller1.ButtonL1.pressed(moveRampUp);
-    Controller1.ButtonL2.pressed(moveRampDown);
-  
-    Controller1.ButtonR1.pressed(spinIntakes);
-    Controller1.ButtonR2.pressed(stopIntakes);
-
-
-    LeftBack.spin(directionType::fwd, -(Controller1.Axis3.value()),velocityUnits::pct);
-    LeftMiddle.spin(directionType::fwd, -(Controller1.Axis3.value()),velocityUnits::pct);
-
-    RightBack.spin(directionType::fwd, (Controller1.Axis2.value()),velocityUnits::pct);
-    RightMiddle.spin(directionType::fwd, (Controller1.Axis2.value()),velocityUnits::pct);
-    task::sleep(20);
->>>>>>> bb3741206eaf82487c8b3e954692e3af6b09713f
   }
 }
