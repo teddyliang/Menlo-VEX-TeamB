@@ -16,7 +16,7 @@ motor RightIntake = motor(PORT5, ratio18_1, false);
 motor LeftIntake = motor(PORT6, ratio18_1, false);
 motor LiftArm = motor(PORT7, ratio18_1, false);
 motor Ramp = motor(PORT8, ratio18_1, false);
-controller Controller1 = controller(primary);
+controller Controller1 = controller();
 
 // VEXcode generated functions
 

@@ -117,6 +117,8 @@ double rampMovementTime = 0.7;
 int topSpeed = 50;
 int liftIntakesSpeed = 10;
 bool slowMode = false;
+vex::directionType reverse = vex::directionType::rev;
+vex::directionType forward = vex::directionType::fwd;
 // A global instance of vex::brain used for printing to the V5 brain screen
 
 // define your global instances of motors and other devices here
@@ -124,13 +126,13 @@ bool slowMode = false;
 
 void moveRampUp()
 {
-  Ramp.spinFor(2, timeUnits::sec, topSpeed,velocityUnits::pct);
+  Ramp.spinFor(1, timeUnits::sec, topSpeed,velocityUnits::pct);
   return;
 }
 
 void moveRampDown()
 {
-  Ramp.spinFor(4, timeUnits::sec, -topSpeed,velocityUnits::pct);
+  Ramp.spinFor(1, timeUnits::sec, -topSpeed,velocityUnits::pct);
   return;
 }
 void moveRamp()
